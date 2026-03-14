@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 573730  -->
+  <question type="stack">
+    <name>
+      <text>P04 - Placas de auto</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En un cierto país, las placas de los automóviles se forman colocando {@L@} {@letra@} a la izquierda y {@N@} {@dig@} a la derecha. Considera que el alfabeto tiene 27 letras y los dígitos son del 0 al 9. Se permite repetir tanto letras como números.</p>
+<p>Un ejemplo de una placa válida con este formato sería: <strong>{@ejemplo@}</strong></p>
+<p>¿Cuántas placas distintas pueden fabricarse en total?</p>
+<p>[[input:ans1]] [[validation:ans1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2025040100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[/* Inicialización de variables fuera del rango para entrar al ciclo */
+L: 0;
+N: 0;
+
+/* Ciclo para asegurar 3 < L+N < 10 */
+while (L+N <= 3 or L+N >= 10) do (
+   L: 1 + rand(6),
+   N: 1 + rand(6)
+);
+
+/* Respuesta correcta: (Alfabeto de 27 letras, Dígitos 0-9) */
+ta1: (27^L) * (10^N);
+
+/* Generación del ejemplo para el enunciado */
+/* Generamos la parte de las letras */
+L_str: "";
+for i:1 thru L do L_str: sconcat(L_str, ascii(65 + rand(26)));
+
+/* Generamos la parte de los números */
+N_str: "";
+for i:1 thru N do N_str: sconcat(N_str, string(rand(10)));
+
+/* Concatenamos con un guion */
+ejemplo: sconcat(L_str, "-", N_str);
+
+/* Si L=1 o N=1, decir "letra" o "dígito" en singular */
+letra: if L=1 then "letra" else "letras";
+dig: if N=1 then "dígito" else "dígitos";]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text><![CDATA[<p>[[feedback:prt1]]</p>]]></text>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>L={@L@}, N={@N@}, ejemplo={@ejemplo@}, resp={@ta1@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><i class="fa fa-check"></i> Respuesta correcta, bien hecho.</p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><i class="fa fa-adjust"></i> Su respuesta es parcialmente correcta.</p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><i class="fa fa-times"></i> Respuesta incorrecta.</p>]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>dot</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint>Escribe tu respuesta aquí</syntaxhint>
+      <syntaxattribute>1</syntaxattribute>
+      <forbidwords>ta1</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options></options>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description></description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta1</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>¡Correcto! Muy bien.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p>Tienes {@L@} espacios para letras (con 27 opciones cada uno) y {@N@} espacios para números (con 10 opciones cada uno). La operación es \( 27^{@L@} \times 10^{@N@} \).</p>]]></text>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+
+</quiz>
