@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 573735  -->
+  <question type="stack">
+    <name>
+      <text>P11 - Dígito en posición de secuencia</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Se escriben los números pares positivos en fila formando una secuencia continua:<br>\(246810121416\ldots\)</p>
+<p>¿Qué dígito se encuentra exactamente en la posición {@N@}?</p>
+<p>[[input:ans1]] [[validation:ans1]]</p>
+<p></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2025040100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* N entre 10 y 80 para caer en el bloque de 2 dígitos */
+N: 10 + rand(70);
+
+/* Los primeros 4 dígitos corresponden a 2, 4, 6, 8 */
+posicion_restante: N - 4;
+
+/* Calculas a qué número de dos dígitos corresponde */
+indice_numero: ceiling(posicion_restante / 2);
+valor_numero: 8 + 2 * indice_numero;
+
+/* Extraemos el dígito correcto */
+if mod(posicion_restante, 2) = 1 then (
+    ta1: floor(valor_numero / 10)
+) else (
+    ta1: mod(valor_numero, 10)
+);</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text><![CDATA[<p>[[feedback:prt1]]</p>]]></text>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>N={@N@}, numero_origen={@valor_numero@}, resp={@ta1@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><i class="fa fa-check"></i> Respuesta correcta, bien hecho.</p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><i class="fa fa-adjust"></i> Su respuesta es parcialmente correcta.</p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><i class="fa fa-times"></i> Respuesta incorrecta.</p>]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>dot</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint>Escribe tu respuesta aquí</syntaxhint>
+      <syntaxattribute>1</syntaxattribute>
+      <forbidwords>ta1</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options></options>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description></description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta1</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>¡Correcto! Muy bien.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p>Los primeros 4 dígitos son de un solo dígito (2, 4, 6, 8). A partir de ahí, cada número ocupa 2 posiciones. El dígito en la posición {@N@} pertenece al número {@valor_numero@}.</p>]]></text>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+
+</quiz>

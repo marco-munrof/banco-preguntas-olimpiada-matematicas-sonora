@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 573257  -->
+  <question type="stack">
+    <name>
+      <text>P04 - MCM y MCD con exponentes</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p data-path-to-node="11">Considera los siguientes números factorizados.</p>
+<p data-path-to-node="12">A = <span class="_aupe copyable-text xkrh14z">\( {@p1@}^{@a@} \times {@p2@}^{@b@} \)</span></p>
+<p data-path-to-node="12">B = <span class="_aupe copyable-text xkrh14z">\( {@p1@}^{@x@} \times {@p2@}^{@y@} \)</span></p>
+<p data-path-to-node="13">(a) Encuentra el máximo común divisor (MCD) de A y B.</p>
+<p data-path-to-node="13">[[input:ans1]] [[validation:ans1]]</p>
+<p data-path-to-node="14">(b) Encuentra el mínimo común múltiplo (MCM) de A y B.</p>
+<p data-path-to-node="14">[[input:ans2]] [[validation:ans2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2025040100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[/* Se define una lista de números primos pequeños */
+primos: [2, 3, 5, 7, 11, 13];
+
+/* Seleccionamos dos índices aleatorios distintos para elegir los primos */
+i1: 1 + rand(6);
+i2: 1 + rand(5);
+if i2 >= i1 then i2: i2 + 1;
+
+/* Asignamos los primos seleccionados a las variables p1 y p2 */
+p1: primos[i1];
+p2: primos[i2];
+
+/* Ordenamos los primos de menor a mayor para presentarlos en orden */
+if p1 > p2 then ( temp: p1, p1: p2, p2: temp );
+
+/* Generamos exponentes aleatorios para el número A */
+a: 2 + rand(6);
+b: 2 + rand(6);
+
+/* Generamos exponentes aleatorios para el número B */
+x: 2 + rand(6);
+y: 2 + rand(6);
+
+/* Calculamos los exponentes para el máximo común divisor usando el mínimo */
+exp_mcd_1: min(a, x);
+exp_mcd_2: min(b, y);
+ta1: p1^exp_mcd_1 * p2^exp_mcd_2;
+
+/* Calculamos los exponentes para el mínimo común múltiplo usando el máximo */
+exp_mcm_1: max(a, x);
+exp_mcm_2: max(b, y);
+ta2: p1^exp_mcm_1 * p2^exp_mcm_2;]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text><![CDATA[<p>[[feedback:prt1]]</p>]]></text>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>A={@p1@}^{@a@}{@p2@}^{@b@}, B={@p1@}^{@x@}{@p2@}^{@y@}, MCD={@ta1@}, MCM={@ta2@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><i class="fa fa-check"></i> Respuesta correcta, bien hecho.</p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><i class="fa fa-adjust"></i> Su respuesta es parcialmente correcta.</p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><i class="fa fa-times"></i> Respuesta incorrecta.</p>]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>dot</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint>Escribe tu respuesta aquí</syntaxhint>
+      <syntaxattribute>1</syntaxattribute>
+      <forbidwords>ta1</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>ta2</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint>Escribe tu respuesta aqui</syntaxhint>
+      <syntaxattribute>1</syntaxattribute>
+      <forbidwords>ta2</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options></options>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description></description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta1</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.5</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>¡Correcto! Muy bien.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p>Para el máximo común divisor tomas el menor exponente de cada primo común. El exponente correcto para {@p1@} es {@exp_mcd_1@} y para {@p2@} es {@exp_mcd_2@}.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description></description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>ta2</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.5</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p>Para el mínimo común múltiplo tomas el mayor exponente de cada primo común. El exponente correcto para {@p1@} es {@exp_mcm_1@} y para {@p2@} es {@exp_mcm_2@}.</p>]]></text>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+
+</quiz>
